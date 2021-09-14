@@ -3,7 +3,7 @@ import videojs from 'video.js'
 // import RecordRTC from 'recordrtc'
 import 'videojs-record/dist/css/videojs.record.css'
 import 'videojs-record/dist/videojs.record.js'
-import useVideoJS from "../useVideoJS";
+import useVideoJS from "./useVideoJS";
 import {useState} from "react";
 
 
@@ -13,7 +13,6 @@ const MyRecorder = () => {
   const [screen, setScreen] = useState(false);
   const [image, setImage] = useState(false);
   const screenDimensions = {
-    // width: { min: 320, ideal: 640, max: 1080 },
     width: { min: 320, ideal: 640, max: 1080 },
     height: { min: 240, ideal: 480, max: 720 }
   }
@@ -23,16 +22,17 @@ const MyRecorder = () => {
     bigPlayButton: false,
     width: 800,
     height: 600,
+    // fluid:true,
     autoplay: true,
     plugins: {
       record: {
         audio: audio,
-        // video: video ? screenDimensions : true,
-        // screen: screen ? screenDimensions : false,
-        // image: image ? screenDimensions : false,
-        video: video,
-        screen: screen,
-        image: image,
+        video: video ? screenDimensions : false,
+        screen: screen ? screenDimensions : false,
+        image: image ? screenDimensions : false,
+        // video: video,
+        // screen: screen,
+        // image: image,
         maxLength: 30, //set video record duration in sec.
         displayMilliseconds: false,
         timeSlice: 5000,
