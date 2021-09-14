@@ -9,12 +9,16 @@ const useVideoJS = (videoJsOptions) => {
   const videoNode = React.useRef(null)
   // const player = React.useRef<any>(null)
   const player = React.useRef(null)
+
   React.useEffect(() => {
-    player.current = videojs(videoNode.current, videoJsOptions,function (){})
+    player.current = videojs(videoNode.current, videoJsOptions,function (){
+    })
+    player?.current?.record()?.getDevice()
+
     return () => {
-            player.current.dispose()
-          }
-  }, [videoJsOptions.plugins.record.screen])
+            player?.current?.dispose()
+    }
+  }, [videoJsOptions])
   const Video = React.useCallback(
       ({children, ...props}) => {
         return (
@@ -25,7 +29,7 @@ const useVideoJS = (videoJsOptions) => {
             </div>
         )
       },
-      [videoJsOptions.plugins.record.screen],
+      [videoJsOptions],
   )
   return {Video, player: player.current}
 }

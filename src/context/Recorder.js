@@ -49,11 +49,18 @@ const MyRecorder = () => {
     setScreen(true);
     console.log(toggleScreen);
   }
-
+  function toggleVideo() {
+    setImage(false);
+    setAudio(true);
+    setVideo(true);
+    setScreen(false);
+    console.log(toggleScreen);
+  }
   return (
       <>
         <Video playsInline  />
         <button onClick={toggleScreen}>screen</button>
+        <button onClick={toggleVideo}>video</button>
       </>
   )
 }
